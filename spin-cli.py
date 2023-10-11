@@ -35,7 +35,7 @@ def getAppPipelineNames():
         pipes = json.loads(getProcessOutput(cmd))
         if len(pipes):
             for pipe in pipes:
-                print(f"application : {app['app']} pipeline : {pipe['name']}")
+                print(f"application : {app} pipeline : {pipe['name']}")
                 pipelines.append({'application': app, 'pipeline': pipe['name']})
     return pipelines
 
