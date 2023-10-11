@@ -4,7 +4,6 @@ import subprocess
 import sys
 import glob
 import shutil
-import yaml
 
 def getProcessOutput(cmd):
     process = subprocess.Popen(
@@ -39,12 +38,12 @@ def getAppPipelineNames():
     return pipelines
 
 def getAppPipelineNamesUsingConfigFile():
-    with open(r'./config.yaml') as file:
-        documents = yaml.full_load(file)
-        app_pipelines_names=[]
-        for app, pipe in documents.items():
-            for pipe in pipe:
-                app_pipelines_names.append({'application': app, 'pipeline': pipe})
+    with open(r'./config.json') as file:
+        documents = json.loads(file.read())
+        app_pipelines_names = []
+        for app, pipelines in documents.items():
+            for pipeline in pipelines:
+                app_pipelines_names.append({'application': app, 'pipeline': pipeline})
         return app_pipelines_names
 
 def getAppPipelineJson():
