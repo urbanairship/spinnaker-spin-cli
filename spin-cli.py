@@ -10,6 +10,8 @@ def getProcessOutput(cmd):
         cmd,
         shell=True,
         capture_output=True, encoding='utf-8')
+    print(f"Running cmd :\n{cmd}")
+    print(f"Output :\n{output.stdout}")
     if output.returncode == 0:
         return output.stdout
     else:
