@@ -6,16 +6,14 @@ import glob
 import shutil
 
 def getProcessOutput(cmd):
-    process = subprocess.Popen(
+    output = subprocess.run(
         cmd,
         shell=True,
-        stdout=subprocess.PIPE)
-    process.wait()
-    data, err = process.communicate()
-    if process.returncode == 0:
-        return data.decode('utf-8')
+        capture_output=True, encoding='utf-8')
+    if output.returncode == 0:
+        return output.stdout
     else:
-        print("Error:", err)
+        print("Error:", output.stderr)
     return ""
 
 def getAppNames():
