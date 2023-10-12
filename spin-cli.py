@@ -53,7 +53,7 @@ def getAppPipelineJson():
         shutil.rmtree("spin-existing-pipelines")
     appPipelines = getAppPipelineNames()
     for pipe in appPipelines:
-        cmd= f"spin pipeline get --name {pipe['pipeline']} --application {pipe['application']}"
+        cmd= f"""spin pipeline get --name "{pipe['pipeline']}" --application {pipe['application']}"""
         pipelineJson = json.loads(getProcessOutput(cmd))
         if not os.path.exists(f"spin-existing-pipelines/{pipe['application']}"):
             os.makedirs(f"spin-existing-pipelines/{pipe['application']}")
@@ -65,7 +65,7 @@ def getAppPipelineJsonUsingConfigFile():
         shutil.rmtree("spin-existing-pipelines")
     appPipelines = getAppPipelineNamesUsingConfigFile()
     for pipe in appPipelines:
-        cmd = f"spin pipeline get --name {pipe['pipeline']} --application {pipe['application']}"
+        cmd = f"""spin pipeline get --name "{pipe['pipeline']}" --application {pipe['application']}"""
         pipelineJson = json.loads(getProcessOutput(cmd))
         if pipelineJson is not None:
             if not os.path.exists(f"spin-existing-pipelines/{pipe['application']}"):
